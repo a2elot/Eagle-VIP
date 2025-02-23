@@ -1,4 +1,4 @@
-// JavaScript for adding cool effects
+// JavaScript for adding cool effects and redirection
 document.addEventListener("DOMContentLoaded", function() {
     const buttons = document.querySelectorAll('.button');
 
@@ -11,6 +11,15 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener('mouseleave', () => {
             button.style.transform = 'scale(1)';
             button.style.boxShadow = 'none';
+        });
+
+        // Add click event for redirection
+        button.addEventListener('click', () => {
+            if (button.id === 'fpredictButton') {
+                window.location.href = 'fpredict.html'; // Redirect to free predict page
+            } else if (button.id === 'vippredictButton') {
+                window.location.href = 'vippredict.html'; // Redirect to VIP predict page
+            }
         });
     });
 });
