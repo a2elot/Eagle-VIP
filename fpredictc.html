@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Color Prediction App</title> 
+  <link rel="stylesheet" href="fpredictc.css"> <!-- Link to CSS --> 
+ <style type="text/css" id="dcoder_stylesheet">/* Basic Reset */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    background-image: url('https://postimage.me/images/2025/02/23/Spider-Man-4K-Wallpaper-for-Marvel-Fans.jpeg');
+    background-size: cover; /* Full cover for mobile */
+    background-position: center;
+}
+
+/* Web Background (Spider-Man Web) */
+.web-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.web-line {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.3); /* Web color */
+}
+
+.web-line.vertical { width: 2px; height: 100%; left: 50%; transform: translateX(-50%); }
+.web-line.horizontal { width: 100%; height: 2px; top: 50%; transform: translateY(-50%); }
+.web-line.diagonal-left { width: 2px; height: 150%; top: -25%; left: 25%; transform: rotate(45deg); }
+.web-line.diagonal-right { width: 2px; height: 150%; top: -25%; right: 25%; transform: rotate(-45deg); }
+
+/* Heading Styling */
+.heading {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    color: #FF0000; /* Red color for Spider-Man vibe */
+    margin-top: 50px;
+}
+
+/* Prediction Container */
+.prediction-container { margin: 20px; }
+
+/* Dropdown and Buttons Styling */
+.selection-area select {
+    padding: 10px;
+    margin: 10px;
+    font-size: 1rem;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #FF0000;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    margin: 10px;
+}
+
+.button:hover {
+    background-color: #CC0000;
+    transform: scale(1.05); /* Button size increases on hover */
+}
+
+/* Prediction Box */
+.prediction-box {
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px solid #FF0000;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.prediction-message {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+/* Countdown Timer */
+.countdown { margin-top: 20px; }
+.countdown h2 { font-size: 1.8rem; }
+
+/* Footer Styling */
+.footer {
+    margin-top: 50px;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* Social Icons */
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-icons img {
+    width: 50px; /* Icon size */
+    margin: 0 10px;
+}</style></head> 
+ <body> 
+  <div class="web-background"> 
+   <div class="web-line vertical"></div> 
+   <div class="web-line horizontal"></div> 
+   <div class="web-line diagonal-left"></div> 
+   <div class="web-line diagonal-right"></div> 
+  </div> 
+  <div class="container"> 
+   <h1 class="heading">Color Prediction App</h1> 
+   <div id="currentTime" class="time-display"></div> 
+   <div id="periodNumber" class="period-display"></div> 
+   <div id="countdownDisplay" class="countdown-display countdown"></div> 
+   <div class="selection-area prediction-container"> <label for="previousColor">Select Previous Color:</label> <select id="previousColor"> <option value="RED">RED</option> <option value="GREEN">GREEN</option> </select> <button id="predictButton" class="button">Predict</button> 
+   </div> 
+   <div id="predictionBox" class="prediction-box"> 
+    <h2>Prediction Result:</h2> 
+    <div id="predictionMessage" class="prediction-message"></div> 
+   </div> 
+   <div class="social-icons"> <a href="https://t.me/a2elot" target="_blank"> <img src="https://img.icons8.com/ios-filled/50/ffffff/telegram.png" alt="Telegram Icon"> </a> <a href="https://www.instagram.com/your_instagram_id" target="_blank"> <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram Icon"> </a> 
+   </div> 
+   <div class="footer">
+     © 2025 Color Prediction App 
+   </div> 
+  </div> 
+  <script src="fpredictc.js"></script> 
+ 
+<script type="text/javascript" id="dcoder_script">let countdown; 
+let periodNumber = ''; 
+let sequence = 0; 
+let isPredicting = false;
+
+// Function to update the period number 
+function updatePeriodNumber() { 
+    const now = new Date(); 
+    const hours = now.getHours(); 
+    const minutes = now.getMinutes();
+
+    if (hours >= 5 && hours < 24) {
+        sequence = (hours - 5) * 60 + (minutes - 30);
+    } else {
+        sequence = 0;
+    }
+
+    if (sequence < 0 || sequence >= 1440) sequence = 0;
+
+    periodNumber = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}1000${String(sequence + 1).padStart(4, '0')}`;
+    document.getElementById('periodNumber').textContent = `Period Number: ${periodNumber}`;
+}
+
+// Function to update current time 
+function updateCurrentTime() { 
+    const now = new Date(); 
+    const currentTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }); 
+    document.getElementById('currentTime').textContent = `Current Time: ${currentTime}`; 
+}
+
+// Function to start countdown with animation 
+function startCountdown() { 
+    const now = new Date(); 
+    let secondsLeft = 60 - now.getSeconds(); // Exact countdown
+    updateCountdownDisplay(secondsLeft);
+
+    countdown = setInterval(() => {
+        secondsLeft = 60 - new Date().getSeconds();
+        updateCountdownDisplay(secondsLeft);
+
+        if (secondsLeft === 0) {
+            sequence++;
+            updatePeriodNumber();
+            animatePeriodUpdate();
+        }
+    }, 1000);
+}
+
+// Function to update countdown display with animation 
+function updateCountdownDisplay(secondsLeft) { 
+    const countdownElem = document.getElementById('countdownDisplay'); 
+    countdownElem.textContent = `00:${String(secondsLeft).padStart(2, '0')}`;
+
+    // Animation
+    countdownElem.style.transform = "scale(1.2)";
+    setTimeout(() => {
+        countdownElem.style.transform = "scale(1)";
+    }, 300);
+}
+
+// Function to animate period number update 
+function animatePeriodUpdate() { 
+    const periodElem = document.getElementById('periodNumber'); 
+    periodElem.style.color = "red"; 
+    periodElem.style.transform = "scale(1.3)";
+
+    setTimeout(() => {
+        periodElem.style.color = "";
+        periodElem.style.transform = "scale(1)";
+    }, 500);
+}
+
+// Function to predict result with animation 
+function predictResult() { 
+    if (isPredicting) return; // Prevent multiple clicks during animation
+    isPredicting = true;
+    const predictionElem = document.getElementById('predictionMessage');
+    predictionElem.textContent = "Checking... Please wait";
+    predictionElem.style.color = "gray";
+
+    document.getElementById('predictButton').style.opacity = "0.6";
+
+    setTimeout(() => {
+        let prediction = Math.random() < 0.5 ? "RED" : "GREEN";
+        
+        predictionElem.textContent = `Prediction: ${prediction}`;
+        predictionElem.style.color = prediction === "RED" ? "red" : "green";
+
+        // Animation effect
+        predictionElem.style.transform = "scale(1.3)";
+        setTimeout(() => {
+            predictionElem.style.transform = "scale(1)";
+        }, 300);
+
+        document.getElementById('predictButton').style.opacity = "1";
+        isPredicting = false;
+    }, 2500);
+}
+
+// Event Listener for prediction button 
+document.getElementById('predictButton').addEventListener('click', predictResult);
+
+// Start everything on page load 
+window.onload = () => { 
+    updatePeriodNumber(); 
+    updateCurrentTime(); 
+    startCountdown(); 
+    setInterval(updateCurrentTime, 1000); 
+};</script></body></html>
