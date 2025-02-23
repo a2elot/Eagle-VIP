@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Add click event for redirection
         button.addEventListener('click', () => {
             if (button.id === 'fpredictButton') {
-                window.location.href = 'fpredict.html'; // Redirect to free predict page
+                window.location.href = 'freepredict.html'; // Redirect to free predict page
             } else if (button.id === 'vippredictButton') {
                 window.location.href = 'vippredict.html'; // Redirect to VIP predict page
             }
