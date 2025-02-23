@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Predict - Eagle Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Exo+2&amp;family=Orbitron&amp;family=Roboto&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+<style type="text/css" id="dcoder_stylesheet">/* Basic Reset */
+body {
+    font-family: 'Roboto', sans-serif; /* Default font */
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    background-image: url('spiderman-bg.jpg'); /* Add your Spider-Man background image */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Web Background (Spider-Man Web) */
+.web-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.web-line {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.3); /* Web color */
+}
+
+.web-line.vertical {
+    width: 2px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.web-line.horizontal {
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.web-line.diagonal-left {
+    width: 2px;
+    height: 150%;
+    top: -25%;
+    left: 25%;
+    transform: rotate(45deg);
+}
+
+.web-line.diagonal-right {
+    width: 2px;
+    height: 150%;
+    top: -25%;
+    right: 25%;
+    transform: rotate(-45deg);
+}
+
+/* Heading Styling */
+.heading {
+    font-family: 'Orbitron', sans-serif; /* Futuristic font for heading */
+    font-size: 3rem;
+    color: #FF0000; /* Red color for Spider-Man vibe */
+    margin-top: 50px;
+    animation: swing 2s infinite; /* Swing animation */
+}
+
+@keyframes swing {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(10deg); }
+    50% { transform: rotate(-10deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Buttons Styling */
+.button {
+    display: block;
+    width: 80%;
+    max-width: 300px;
+    padding: 15px;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #FF0000;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    position: relative;
+    z-index: 2;
+    margin: 10px auto;
+}
+
+.button.get-key {
+    font-family: 'Bebas Neue', sans-serif; /* Stylish font for Get Key button */
+}
+
+.button.login-button {
+    font-family: 'Exo 2', sans-serif; /* Modern font for Login button */
+}
+
+.button:hover {
+    background-color: #CC0000;
+    transform: scale(1.05); /* Button bada ho jayega */
+    box-shadow: 0 0 15px #FF0000; /* Red glow effect */
+}
+
+/* Login Form */
+.login-form {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-form h2 {
+    font-family: 'Bebas Neue', sans-serif; /* Stylish font for form heading */
+    font-size: 1.8rem;
+    color: #FF0000; /* Red color for headings */
+    margin-bottom: 10px;
+}
+
+.login-form input {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #FF0000;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-family: 'Exo 2', sans-serif; /* Modern font for input */
+    font-size: 1rem;
+}
+
+.login-form input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.error-message {
+    color: #FF0000;
+    font-family: 'Exo 2', sans-serif; /* Modern font for error message */
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+/* Footer Styling */
+.footer {
+    margin-top: 50px;
+    font-family: 'Roboto', sans-serif; /* Simple font for footer */
+    font-size: 0.9rem;
+    color: #888;
+    position: relative;
+    z-index: 2;
+}</style></head>
+<body>
+    <div class="web-background">
+        <div class="web-line vertical"></div>
+        <div class="web-line horizontal"></div>
+        <div class="web-line diagonal-left"></div>
+        <div class="web-line diagonal-right"></div>
+    </div>
+    <div class="container">
+        <h1 class="heading">Free Predict</h1>
+        <div class="options">
+            <!-- Get Key Option -->
+            <a href="https://t.me/a2elot" class="button get-key" target="_blank">Get Key</a>
+
+            <!-- Login Form -->
+            <div class="login-form">
+                <h2>Login with Key</h2>
+                <input type="text" id="keyInput" placeholder="Enter your key">
+                <button onclick="redirectToPage()" class="button login-button">Login</button>
+                <p id="errorMessage" class="error-message"></p>
+            </div>
+        </div>
+        <a href="index.html" class="button back-button">Back to Home</a>
+    </div>
+    <div class="footer">
+        Made by a1elot
+    </div>
+
+    <script src="script.js"></script>
+
+<script type="text/javascript" id="dcoder_script">// Function to redirect based on key
+function redirectToPage() {
+    const keyInput = document.getElementById('keyInput').value.trim();
+    const errorMessage = document.getElementById('errorMessage');
+
+    // Check which key is entered
+    if (keyInput === "eaglefree") {
+        window.location.href = "fpredictc.html";
+    } else if (keyInput === "eagle789free") {
+        window.location.href = "fpredictsize.html";
+    } else if (keyInput === "eagle6469@free.com") {
+        window.location.href = "fpredictsize.html";
+    } else {
+        errorMessage.textContent = "Invalid key! Please enter a valid key.";
+    }
+}</script></body></html>
